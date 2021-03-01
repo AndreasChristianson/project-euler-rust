@@ -6,7 +6,9 @@ edition = "2018"
 
 [[bin]]
 name = "pe-1"
-path = "src/bin/pe-1.rs"
+[[bin]]
+name = "pe-2"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
