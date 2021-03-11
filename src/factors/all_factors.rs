@@ -1,11 +1,11 @@
+// slow. need to use prime factors and combinatorics
+
 pub fn factors<T: num::PrimInt>(target: T) -> Vec<T> {
-    // let mut adjusted_target = target;
     let mut n = T::from(2).unwrap();
     let mut ret = vec![];
     while n * n < target {
         if target % n == T::zero() {
             ret.push(n);
-            // adjusted_target = adjusted_target / n;
             ret.push(target / n);
             n = T::from(2).unwrap();
         }
