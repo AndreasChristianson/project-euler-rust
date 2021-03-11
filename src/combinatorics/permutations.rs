@@ -43,7 +43,10 @@ mod all_permutations_with_missing_tests {
     use super::all_permutations_with_missing;
     #[test]
     fn empty_list() {
-        assert_eq!(all_permutations_with_missing::<i32>(vec![]), Vec::<Vec<i32>>::new());
+        assert_eq!(
+            all_permutations_with_missing::<i32>(vec![]),
+            Vec::<Vec<i32>>::new()
+        );
     }
     #[test]
     fn one_element() {
@@ -87,7 +90,7 @@ mod all_permutations_with_missing_tests {
 }
 
 pub fn unordered_permutations_with_missing<T>(input: Vec<T>) -> Vec<Vec<T>> {
-  return vec![];
+    return vec![];
 }
 
 #[cfg(test)]
@@ -95,19 +98,22 @@ mod unordered_permutations_with_missing_tests {
     use super::unordered_permutations_with_missing;
     #[test]
     fn empty_list() {
-        assert_eq!(unordered_permutations_with_missing::<i32>(vec![]), Vec::<Vec<i32>>::new());
+        assert_eq!(
+            unordered_permutations_with_missing::<i32>(vec![]),
+            Vec::<Vec<i32>>::new()
+        );
     }
     #[test]
     fn one_element() {
         assert_eq!(
-          unordered_permutations_with_missing(vec![1]),
+            unordered_permutations_with_missing(vec![1]),
             vec![vec![], vec![1]]
         );
     }
     #[test]
     fn two_elements() {
         assert_eq!(
-          unordered_permutations_with_missing(vec![1, 2]),
+            unordered_permutations_with_missing(vec![1, 2]),
             vec![vec![], vec![1], vec![2], vec![1, 2]]
         );
     }
@@ -115,7 +121,7 @@ mod unordered_permutations_with_missing_tests {
     #[test]
     fn three_elements_lexicographic() {
         assert_eq!(
-          unordered_permutations_with_missing(vec![1, 2, 3]),
+            unordered_permutations_with_missing(vec![1, 2, 3]),
             vec![
                 vec![],
                 vec![1],

@@ -1,5 +1,5 @@
-pub fn number_of_digits<T: num::PrimInt>(number: T) -> u16 {
-    return 0;
+pub fn number_of_digits(number: i128) -> usize {
+    return number.abs().to_string().chars().count();
 }
 
 #[cfg(test)]
@@ -21,13 +21,13 @@ mod number_of_digits_tests {
     }
     #[test]
     fn negative_ten_digits() {
-        assert_eq!(number_of_digits(-1234567890), 1);
+        assert_eq!(number_of_digits(-1234567890), 10);
     }
 
     #[test]
     fn big_numbers() {
         assert_eq!(
-            number_of_digits(1234567890_1234567890_1234567890_123456789u128),
+            number_of_digits(1234567890_1234567890_1234567890_123456789i128),
             39
         );
     }
