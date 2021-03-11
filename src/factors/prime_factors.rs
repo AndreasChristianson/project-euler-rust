@@ -23,7 +23,7 @@ pub fn prime_factors<T: num::PrimInt>(target: T) -> Vec<T> {
 }
 
 #[cfg(test)]
-mod tests {
+mod prime_factors_tests {
     use super::*;
     #[test]
     fn prime_factors_of_10() {

@@ -31,7 +31,7 @@ pub fn fibonacci<T: num::PrimInt>() -> Fibonacci<T> {
 }
 
 #[cfg(test)]
-mod tests {
+mod fibonacci_tests {
     use super::*;
     #[test]
     fn first_couple_fib() {

@@ -65,11 +65,11 @@ pub fn primes<T: num::PrimInt>() -> PrimeSequence<T> {
 }
 
 #[cfg(test)]
-mod tests {
+mod primes_tests {
     use super::*;
     #[test]
     fn sum_of_first_primes_less_than_100() {
-        let mut generator: PrimeSequence<u32> = primes();
+        let generator: PrimeSequence<u32> = primes();
         let sum: u32 = generator.take_while(|&n| n < 100).sum();
 
         assert_eq!(1060, sum)
@@ -77,7 +77,7 @@ mod tests {
 
     #[test]
     fn sum_of_first_primes_less_than_10000() {
-        let mut generator: PrimeSequence<u32> = primes();
+        let generator: PrimeSequence<u32> = primes();
         let sum: u32 = generator.take_while(|&n| n < 10000).sum();
 
         assert_eq!(5736396, sum)
@@ -85,7 +85,7 @@ mod tests {
 
     #[test]
     fn sum_of_first_1000_primes() {
-        let mut generator: PrimeSequence<u128> = primes();
+        let generator: PrimeSequence<u128> = primes();
         let sum: u128 = generator.take(1000).sum();
 
         assert_eq!(3682913, sum)
@@ -110,7 +110,7 @@ mod tests {
 
     #[test]
     fn number_of_primes_less_than_1_000_000() {
-        let mut generator: PrimeSequence<u32> = primes();
+        let generator: PrimeSequence<u32> = primes();
         let count = generator.take_while(|&n| n < 1_000_000).count();
 
         assert_eq!(78498, count)
