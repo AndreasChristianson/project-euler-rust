@@ -2,8 +2,8 @@ extern crate num;
 
 pub struct PrimeSequence<T: num::PrimInt> {
     primes: Vec<T>,
-    n: T,         // 6n±1
-    bottom: bool, // true = 6n-1, false = 6n+1
+    n: T,           // last prime we found unless we're in the middle of `next`
+    nearest_six: T, // closest value divisible by 6
 }
 
 impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
@@ -11,47 +11,45 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
 
     fn next(&mut self) -> Option<T> {
         fn inc<V: num::PrimInt>(seq: &mut PrimeSequence<V>) {
-            if seq.bottom {
-                seq.bottom = false;
+            if seq.n < seq.nearest_six {
+                seq.n = seq.n + V::from(2).unwrap();
             } else {
-                seq.bottom = true;
-                seq.n = seq.n + V::from(6).unwrap();
+                seq.nearest_six = seq.nearest_six + V::from(6).unwrap();
+                seq.n = seq.nearest_six - V::one();
             }
         }
-
-        if self.n == T::zero() && self.bottom {
-            inc(self);
-
-            return Some(T::from(2).unwrap());
-        }
-        if self.n == T::zero() && !self.bottom {
-            inc(self);
-
-            return Some(T::from(3).unwrap());
-        }
-
-        'next: loop {
-            let potential;
-            if self.bottom {
-                potential = self.n - T::one();
-            } else {
-                potential = self.n + T::one();
-            }
-            inc(self);
-
-            for &n in &self.primes {
-                if n * n > potential {
-                    self.primes.push(potential);
-
-                    return Some(potential);
+        fn is_prime<V: num::PrimInt>(primes: &Vec<V>, n: V) -> bool {
+            for &prime in primes {
+                if prime * prime > n {                      /* Should always be exit here on a prime */
+                    return true                             /* Bertrand's postulate states that for every integer n there is a prime number between n and 2n, since all primes are at least 2, if we are dealing with a prime number the last prime squared will be greater than the next prime */
                 }
-                if potential % n == T::zero() {
-                    continue 'next;
+                if n % prime == V::zero() {
+                    return false
                 }
             }
-            self.primes.push(potential);
+            true                                           // should be mathematically impossible to get here, but rust still wants something
+        }
 
-            return Some(potential);
+        let two = T::from(2).unwrap();
+        if self.n < two {
+            self.n = two;
+            self.primes.push(two);
+            return Some(two);
+        }
+
+        if self.n == two {
+            let three = T::from(3).unwrap();
+            self.n = three;
+            self.primes.push(three);
+            return Some(three);
+        }
+
+        loop {
+            inc(self);
+            if is_prime(&self.primes, self.n) {
+                self.primes.push(self.n);
+                return Some(self.n)
+            }
         }
     }
 }
@@ -60,7 +58,7 @@ pub fn primes<T: num::PrimInt>() -> PrimeSequence<T> {
     PrimeSequence {
         primes: vec![],
         n: T::zero(),
-        bottom: true,
+        nearest_six: T::zero()
     }
 }
 
@@ -70,7 +68,8 @@ mod primes_tests {
     #[test]
     fn sum_of_first_primes_less_than_100() {
         let generator: PrimeSequence<u32> = primes();
-        let sum: u32 = generator.take_while(|&n| n < 100).sum();
+        let generator2: PrimeSequence<u32> = primes();
+        let sum: u32 = generator2.take_while(|&n| n < 100).sum();
 
         assert_eq!(1060, sum)
     }
