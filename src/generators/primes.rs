@@ -38,10 +38,9 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
         }
 
         if self.n == two {
-            let three = T::from(3).unwrap();
-            self.n = three;
-            self.primes.push(three);
-            return Some(three);
+            self.n = T::from(3).unwrap();
+            self.primes.push(self.n);
+            return Some(self.n);
         }
 
         loop {
