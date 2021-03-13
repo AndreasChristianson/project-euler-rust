@@ -67,8 +67,7 @@ mod primes_tests {
     #[test]
     fn sum_of_first_primes_less_than_100() {
         let generator: PrimeSequence<u32> = primes();
-        let generator2: PrimeSequence<u32> = primes();
-        let sum: u32 = generator2.take_while(|&n| n < 100).sum();
+        let sum: u32 = generator.take_while(|&n| n < 100).sum();
 
         assert_eq!(1060, sum)
     }
