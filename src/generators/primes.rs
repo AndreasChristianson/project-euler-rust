@@ -2,7 +2,7 @@ extern crate num;
 
 pub struct PrimeSequence<T: num::PrimInt> {
     primes: Vec<T>,
-    n: T,           // last prime we found unless we're in the middle of `next`
+    n: T,           // last number we checked
     nearest_six: T, // closest value divisible by 6
 }
 
