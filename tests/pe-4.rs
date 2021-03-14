@@ -29,10 +29,10 @@ fn largest_product_palindrome(max: i32) -> i32 {
 
 #[test]
 fn pe_4_given() {
-    assert_eq!(largest_product_palindrome(99), 9009)
+    assert_eq!(largest_product_palindrome(99), 9009);
 }
 
 #[test]
 fn pe_4_solution() {
-    assert_eq!(largest_product_palindrome(999), 906609)
+    assert_eq!(largest_product_palindrome(999), 906609);
 }

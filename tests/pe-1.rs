@@ -7,5 +7,5 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 #[test]
 fn pe_1() {
     let sum: i32 = (0..1000).filter(|n| n % 3 == 0 || n % 5 == 0).sum();
-    assert_eq!(233168, sum)
+    assert_eq!(233168, sum);
 }

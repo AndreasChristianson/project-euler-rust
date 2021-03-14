@@ -18,5 +18,5 @@ fn pe_2() {
         .filter(Integer::is_even)
         .sum();
 
-    assert_eq!(4613732, sum)
+    assert_eq!(4613732, sum);
 }

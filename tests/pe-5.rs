@@ -41,10 +41,10 @@ fn smallest_divisible_by_range(range: std::ops::Range<u64>) -> u64 {
 
 #[test]
 fn pe_5_given() {
-    assert_eq!(smallest_divisible_by_range(2..10), 2520)
+    assert_eq!(smallest_divisible_by_range(2..10), 2520);
 }
 
 #[test]
 fn pe_5_solution() {
-    assert_eq!(smallest_divisible_by_range(2..20), 232792560)
+    assert_eq!(smallest_divisible_by_range(2..20), 232792560);
 }
