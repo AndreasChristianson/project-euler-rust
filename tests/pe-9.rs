@@ -45,11 +45,12 @@ fn given() {
 fn solution() {
     assert_eq!(
         find_triplet_with_sum(1000).unwrap(),
-        Triplet { a: 200, b: 375, c: 425 }
+        Triplet {
+            a: 200,
+            b: 375,
+            c: 425
+        }
     );
 
-    assert_eq!(
-      200*375* 425 ,
-      31875000
-  );
+    assert_eq!(200 * 375 * 425, 31875000);
 }
