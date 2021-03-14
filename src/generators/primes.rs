@@ -45,7 +45,7 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
             inc(self);
             if is_prime(&self.primes, self.n) {
                 self.primes.push(self.n);
-                return Some(self.n)
+                return Some(self.n);
             }
         }
     }
