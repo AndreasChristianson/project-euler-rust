@@ -12,12 +12,12 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 #[test]
 fn pe_3_13195_yields_29() {
     let prime_factors_13195 = prime_factors(13195);
-    assert_eq!(prime_factors_13195, vec![5, 7, 13, 29])
+    assert_eq!(prime_factors_13195, vec![5, 7, 13, 29]);
 }
 #[test]
 fn pe_3_600851475143_yields_6857() {
     assert_eq!(
         prime_factors(600_851_475_143u128),
         vec![71, 839, 1471, 6857]
-    )
+    );
 }
