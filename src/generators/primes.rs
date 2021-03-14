@@ -33,7 +33,6 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
         let two = T::from(2).unwrap();
         if self.n < two {
             self.n = two;
-            self.primes.push(two);
             return Some(two);
         }
 
