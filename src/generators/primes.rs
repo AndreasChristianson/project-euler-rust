@@ -21,7 +21,7 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
         fn is_prime<V: num::PrimInt>(primes: &Vec<V>, n: V) -> bool {
             for &prime in primes {
                 if prime * prime > n {                      // Should always be exit here on a prime
-                    return true                             // Bertrand's postulate states that for every integer n there is a prime number between n and 2n
+                    return true;                            // Bertrand's postulate states that for every integer n there is a prime number between n and 2n
                 }                                           // since all primes are at least 2, if we are dealing with a prime number the last prime squared will be greater than the next prime
                 if n % prime == V::zero() {
                     return false
