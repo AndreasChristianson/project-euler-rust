@@ -27,19 +27,17 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
                     return false
                 }
             }
-            true                                           // should be mathematically impossible to get here, but rust still wants something
+            true
         }
 
         let two = T::from(2).unwrap();
         if self.n < two {
             self.n = two;
-            self.primes.push(two);
             return Some(two);
         }
 
         if self.n == two {
             self.n = T::from(3).unwrap();
-            self.primes.push(self.n);
             return Some(self.n);
         }
 
