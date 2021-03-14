@@ -34,17 +34,17 @@ mod is_prime_tests {
     fn large_primes() {
         for n in vec![
             7919u128,
-            27644437,            //bell
-            319993,              //circular
-            433494437,           //fib
-            6643838879,          //lucas
+            27644437,   //bell
+            319993,     //circular
+            433494437,  //fib
+            6643838879, //lucas
             // 2305843009213693951, //mersenne
-            200560490131,        //primordial
+            200560490131, //primordial
             // 304250263527209,     //primordial
             // 909090909090909091,  //unique
             // 1111111111111111111, //unique
-            32212254719,         //woodall
-            65537,               //fermat
+            32212254719, //woodall
+            65537,       //fermat
         ] {
             assert!(is_prime(n));
         }
