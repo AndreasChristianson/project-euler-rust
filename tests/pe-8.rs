@@ -32,7 +32,7 @@ const number_string: &str = r##"
 <p>Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?</p>
 */
 
-pub fn largest_adjacent_product(numbers: &str, adjacent_count: usize) -> u128 {
+fn largest_adjacent_product(numbers: &str, adjacent_count: usize) -> u128 {
     let mut queue = CircularQueue::with_capacity(adjacent_count);
     let sequence = to_int_sequence(numbers.to_string());
     let mut max_value = 0;
