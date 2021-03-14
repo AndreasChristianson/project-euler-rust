@@ -17,7 +17,6 @@ pub fn prime_factors<T: num::PrimInt>(target: T) -> Vec<T> {
         }
     }
     ret.push(adjusted_target);
-    // ret.dedup();
 
     return ret;
 }
