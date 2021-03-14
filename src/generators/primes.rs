@@ -55,7 +55,7 @@ pub fn primes<T: num::PrimInt>() -> PrimeSequence<T> {
     PrimeSequence {
         primes: vec![],
         n: T::zero(),
-        nearest_six: T::zero()
+        nearest_six: T::zero(),
     }
 }
 
