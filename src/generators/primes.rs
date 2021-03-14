@@ -27,7 +27,7 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
                     return false
                 }
             }
-            true                                           // should be mathematically impossible to get here, but rust still wants something
+            true
         }
 
         let two = T::from(2).unwrap();
