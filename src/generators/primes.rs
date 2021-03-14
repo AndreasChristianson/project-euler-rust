@@ -24,7 +24,7 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
                     return true;                            // Bertrand's postulate states that for every integer n there is a prime number between n and 2n
                 }                                           // since all primes are at least 2, if we are dealing with a prime number the last prime squared will be greater than the next prime
                 if n % prime == V::zero() {
-                    return false
+                    return false;
                 }
             }
             true
