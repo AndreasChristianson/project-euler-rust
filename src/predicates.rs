@@ -1,1 +1,2 @@
-pub mod is_prime;
+pub mod primality;
+pub mod pythagorean;
