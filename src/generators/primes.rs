@@ -39,7 +39,6 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
 
         if self.n == two {
             self.n = T::from(3).unwrap();
-            self.primes.push(self.n);
             return Some(self.n);
         }
 
