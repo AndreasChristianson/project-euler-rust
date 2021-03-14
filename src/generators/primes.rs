@@ -27,7 +27,7 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
                     return false;
                 }
             }
-            true
+            true;
         }
 
         let two = T::from(2).unwrap();
