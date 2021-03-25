@@ -6,7 +6,7 @@ use project_euler_rust::strings::string_to_integer_sequence::to_int_sequence;
 <p>The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.</p>
 <p class="monospace center">
 */
-const number_string: &str = r##"
+const NUMBER_STRING: &str = r##"
 73167176531330624919225119674426574742355349194934<br />
 96983520312774506326239578318016984801869478851843<br />
 85861560789112949495459501737958331952853208805511<br />
@@ -50,10 +50,10 @@ fn largest_adjacent_product(numbers: &str, adjacent_count: usize) -> u128 {
 
 #[test]
 fn given() {
-    assert_eq!(largest_adjacent_product(number_string, 4), 5832);
+    assert_eq!(largest_adjacent_product(NUMBER_STRING, 4), 5832);
 }
 
 #[test]
 fn solution() {
-    assert_eq!(largest_adjacent_product(number_string, 13), 23514624000);
+    assert_eq!(largest_adjacent_product(NUMBER_STRING, 13), 23514624000);
 }
