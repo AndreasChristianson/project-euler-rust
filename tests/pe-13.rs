@@ -415,8 +415,5 @@ fn solution() {
     let mut as_string = sum.to_str_radix(10);
     as_string.truncate(10);
 
-    assert_eq!(
-        as_string,
-        "5537376230"
-    );
+    assert_eq!(as_string, "5537376230");
 }
