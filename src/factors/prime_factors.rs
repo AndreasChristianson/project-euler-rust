@@ -57,6 +57,18 @@ mod prime_factors_tests {
             prime_factors(product)
         );
     }
+
+    #[test]
+    fn prime_factors_of_812899257272051723607760622343648000() {
+        assert_eq!(
+            vec![
+                2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 7, 7, 11, 11, 13, 17, 19, 23, 29,
+                31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73
+            ],
+            prime_factors(812899257272051723607760622343648000u128)
+        );
+    }
+
     #[test]
     fn prime_factors_of_primes() {
         assert_eq!(vec![7727], prime_factors(7727));
