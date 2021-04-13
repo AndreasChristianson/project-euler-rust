@@ -19,10 +19,10 @@ fn solution() {
     for c in 1..1_000_000 {
         let count = hailstone(c).count();
         if count > max_count {
-          max_count = count;
-          max_start = c;
+            max_count = count;
+            max_start = c;
         }
     }
-    assert_eq!(max_count,524);
-    assert_eq!(max_start,837799);
+    assert_eq!(max_count, 524);
+    assert_eq!(max_start, 837799);
 }
