@@ -16,14 +16,14 @@ use project_euler_rust::combinatorics::count_permutations::count_ways_to_pick;
 */
 
 fn count_routes(d: u128) -> u128 {
-  return count_ways_to_pick(d, d * 2);
+    return count_ways_to_pick(d, d * 2);
 }
 
 #[test]
 fn solution() {
-  let routes = count_routes(20);
+    let routes = count_routes(20);
 
-  assert_eq!(routes, 137846528820);
+    assert_eq!(routes, 137846528820);
 }
 
 #[test]
@@ -44,7 +44,7 @@ fn extrapolate1x1() {
 fn extrapolate3x3() {
     let routes = count_routes(3);
 
-    assert_eq!(routes, 6*2+2*4);
+    assert_eq!(routes, 6 * 2 + 2 * 4);
     assert_eq!(routes, 20);
 }
 
@@ -52,5 +52,5 @@ fn extrapolate3x3() {
 fn extrapolate4x4() {
     let routes = count_routes(4);
 
-    assert_eq!(routes, 2*(6*2+2*4)+2*(5+4+6));
+    assert_eq!(routes, 2 * (6 * 2 + 2 * 4) + 2 * (5 + 4 + 6));
 }
