@@ -1,5 +1,4 @@
 pub fn pick<T: Copy>(input: &[T], n: usize) -> Vec<Vec<T>> {
-    // println!("pick n: input:{:?}, n:{}", input, n);
     let mut ret = vec![];
     let count = input.len();
 
@@ -21,19 +20,13 @@ pub fn pick<T: Copy>(input: &[T], n: usize) -> Vec<Vec<T>> {
         for i in 0..count - 1 {
             let current_pick = input.get(i).unwrap();
             let remaining = &input[i + 1..count];
-            // println!(
-            //     "pick n, recurring: i:{:?}, current_pick:{:?}, remaining:{:?}",
-            //     i, current_pick, remaining
-            // );
             let sub_picks = pick(remaining, n - 1);
             for mut combination in sub_picks {
                 combination.insert(0, *current_pick);
                 ret.push(combination);
             }
-            // println!("pick n, returning: ret:{:?}", ret);
         }
     }
-    // println!("pick n: ret:{:?}", ret);
     return ret;
 }
 
