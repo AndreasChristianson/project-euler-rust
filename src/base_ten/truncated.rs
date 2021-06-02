@@ -26,6 +26,9 @@ mod number_of_digits_tests {
 
     #[test]
     fn exact() {
-        assert_eq!(least_significant_digits(1234567890_0987654321, 20), "12345678900987654321");
+        assert_eq!(
+            least_significant_digits(1234567890_0987654321, 20),
+            "12345678900987654321"
+        );
     }
 }

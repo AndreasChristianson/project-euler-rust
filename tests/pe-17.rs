@@ -15,21 +15,20 @@ fn count_chars(string: String) -> usize {
 
 #[test]
 fn solution() {
-  let mut numbers = String::new();
-  for n in 1..=1000 {
-    numbers.push_str(&number_to_spoken_text(n));
-  }
-  assert_eq!(count_chars(numbers), 21124);
+    let mut numbers = String::new();
+    for n in 1..=1000 {
+        numbers.push_str(&number_to_spoken_text(n));
+    }
+    assert_eq!(count_chars(numbers), 21124);
 }
 
 #[test]
 fn given1() {
-  let mut numbers = String::new();
-  for n in 1..=5 {
-    numbers.push_str(&number_to_spoken_text(n));
-  }
-  assert_eq!(count_chars(numbers), 19);
-
+    let mut numbers = String::new();
+    for n in 1..=5 {
+        numbers.push_str(&number_to_spoken_text(n));
+    }
+    assert_eq!(count_chars(numbers), 19);
 }
 
 #[test]

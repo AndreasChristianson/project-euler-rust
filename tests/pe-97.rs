@@ -13,28 +13,28 @@ https://en.wikipedia.org/wiki/Mersenne_prime#List_of_known_Mersenne_primes
 
 #[test]
 fn solution() {
-  let mut prime = 1u64;
+    let mut prime = 1u64;
 
-  for _ in 0..7830457 {
-    prime *=2;
-    prime %= 10_000_000_000;
-  }
-  prime *= 28433;
-  prime += 1;
+    for _ in 0..7830457 {
+        prime *= 2;
+        prime %= 10_000_000_000;
+    }
+    prime *= 28433;
+    prime += 1;
 
-  assert_eq!("8739992577", least_significant_digits(prime.into(), 10));
+    assert_eq!("8739992577", least_significant_digits(prime.into(), 10));
 }
 
 #[test]
 fn given() {
-  // last_digits(2 ^ 6972593 − 1) = 142924193791
-  let mut prime = 1u64;
+    // last_digits(2 ^ 6972593 − 1) = 142924193791
+    let mut prime = 1u64;
 
-  for _ in 0..6972593 {
-    prime *=2;
-    prime %= 10_000_000_000_000;
-  }
-  prime -= 1;
+    for _ in 0..6972593 {
+        prime *= 2;
+        prime %= 10_000_000_000_000;
+    }
+    prime -= 1;
 
-  assert_eq!("142924193791", least_significant_digits(prime.into(), 12));
+    assert_eq!("142924193791", least_significant_digits(prime.into(), 12));
 }
