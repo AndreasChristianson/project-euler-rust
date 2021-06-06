@@ -4,20 +4,15 @@ pub struct PrimeSequence<T: num::PrimInt> {
     primes: Vec<T>,
     n: T,           // last number we checked
     nearest_six: T, // closest value divisible by 6
+    six: T,
+    two: T,
+    three: T,
 }
 
 impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        fn inc<V: num::PrimInt>(seq: &mut PrimeSequence<V>) {
-            if seq.n < seq.nearest_six {
-                seq.n = seq.n + V::from(2).unwrap();
-            } else {
-                seq.nearest_six = seq.nearest_six + V::from(6).unwrap();
-                seq.n = seq.nearest_six - V::one();
-            }
-        }
         fn is_prime<V: num::PrimInt>(primes: &Vec<V>, n: V) -> bool {
             for &prime in primes {
                 if prime * prime > n {
@@ -32,19 +27,23 @@ impl<T: num::PrimInt> Iterator for PrimeSequence<T> {
             return true;
         }
 
-        let two = T::from(2).unwrap();
-        if self.n < two {
-            self.n = two;
-            return Some(two);
+        if self.n < self.two {
+            self.n = self.two;
+            return Some(self.two);
         }
 
-        if self.n == two {
-            self.n = T::from(3).unwrap();
+        if self.n == self.two {
+            self.n = self.three;
             return Some(self.n);
         }
 
         loop {
-            inc(self);
+            if self.n < self.nearest_six {
+                self.n = self.n + self.two;
+            } else {
+                self.nearest_six = self.nearest_six + self.six;
+                self.n = self.nearest_six - T::one();
+            }
             if is_prime(&self.primes, self.n) {
                 self.primes.push(self.n);
                 return Some(self.n);
@@ -58,6 +57,118 @@ pub fn primes<T: num::PrimInt>() -> PrimeSequence<T> {
         primes: vec![],
         n: T::zero(),
         nearest_six: T::zero(),
+        six: T::from(6).unwrap(),
+        two: T::from(2).unwrap(),
+        three: T::from(3).unwrap(),
+    }
+}
+
+pub struct SexyPrimeSequence<T: num::PrimInt> {
+    primes_sequence: PrimeSequence<T>,
+    last: T,
+}
+
+pub fn sexy_primes<T: num::PrimInt>() -> SexyPrimeSequence<T> {
+    SexyPrimeSequence {
+        primes_sequence: primes(),
+        last: T::zero(),
+    }
+}
+
+impl<T: num::PrimInt> Iterator for SexyPrimeSequence<T> {
+    type Item = (T, T);
+
+    fn next(&mut self) -> Option<(T, T)> {
+        loop {
+            let current = self.primes_sequence.next().unwrap();
+            let potential = (self.last, current);
+            self.last = current;
+            if potential.0 + self.primes_sequence.six == potential.1 {
+                return Some(potential);
+            }
+        }
+    }
+}
+
+pub struct SexyPrimeQuadrupletsSequence<T: num::PrimInt> {
+    sexy_primes_sequence: SexyPrimeSequence<T>,
+    first: (T, T),
+    second: (T, T),
+}
+
+pub fn quadruplets_sexy_primes<T: num::PrimInt>() -> SexyPrimeQuadrupletsSequence<T> {
+    SexyPrimeQuadrupletsSequence {
+        sexy_primes_sequence: sexy_primes(),
+        first: (T::zero(), T::zero()),
+        second: (T::zero(), T::zero()),
+    }
+}
+
+impl<T: num::PrimInt> Iterator for SexyPrimeQuadrupletsSequence<T> {
+    type Item = (T, T, T, T);
+
+    fn next(&mut self) -> Option<(T, T, T, T)> {
+        loop {
+            let current = self.sexy_primes_sequence.next().unwrap();
+            let potential = (self.first, self.second, current);
+            self.first = self.second;
+            self.second = current;
+            if potential.0 .1 == potential.1 .0 && potential.1 .1 == potential.2 .0 {
+                return Some((
+                    potential.0 .0,
+                    potential.1 .0,
+                    potential.1 .1,
+                    potential.2 .1,
+                ));
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod sexy_prime_quadruplets_tests {
+    use super::*;
+
+    #[test]
+    fn first_few() {
+        let mut generator: SexyPrimeQuadrupletsSequence<u64> = quadruplets_sexy_primes();
+
+        assert_eq!((251, 257, 263, 269), generator.next().unwrap());
+        assert_eq!((1741, 1747, 1753, 1759), generator.next().unwrap());
+        assert_eq!((3301, 3307, 3313, 3319), generator.next().unwrap());
+        assert_eq!((5101, 5107, 5113, 5119), generator.next().unwrap());
+        assert_eq!((5381, 5387, 5393, 5399), generator.next().unwrap());
+    }
+}
+
+#[cfg(test)]
+mod sexy_primes_tests {
+    use super::*;
+
+    #[test]
+    fn first_few() {
+        let mut generator: SexyPrimeSequence<u64> = sexy_primes();
+
+        assert_eq!((23, 29), generator.next().unwrap());
+        assert_eq!((31, 37), generator.next().unwrap());
+        assert_eq!((47, 53), generator.next().unwrap());
+        assert_eq!((53, 59), generator.next().unwrap());
+    }
+
+    #[test]
+    fn greater_than_7900() {
+        let generator: SexyPrimeSequence<u64> = sexy_primes();
+
+        let next = generator.skip_while(|x| x.0 < 7900).next().unwrap();
+        assert_eq!((7901, 7907), next);
+    }
+
+    #[test]
+    fn count_less_than_100_000() {
+        let generator: SexyPrimeSequence<u64> = sexy_primes();
+
+        let count = generator.take_while(|x| x.0 < 100_000).count();
+        assert_eq!(1940, count);
     }
 }
 
