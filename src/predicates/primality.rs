@@ -30,6 +30,7 @@ mod is_prime_tests {
             assert!(is_prime(n));
         }
     }
+
     #[test]
     fn large_primes() {
         for n in vec![
@@ -38,17 +39,27 @@ mod is_prime_tests {
             319993,     //circular
             433494437,  //fib
             6643838879, //lucas
-            // 2305843009213693951, //mersenne
             200560490131, //primordial
-            // 304250263527209,     //primordial
-            // 909090909090909091,  //unique
-            // 1111111111111111111, //unique
             32212254719, //woodall
             65537,       //fermat
         ] {
             assert!(is_prime(n));
         }
     }
+
+    #[test]
+    #[ignore]
+    fn large_slow_primes() {
+        for n in vec![
+            2305843009213693951u128, //mersenne
+            304250263527209,     //primordial
+            909090909090909091,  //unique
+            1111111111111111111, //unique
+        ] {
+            assert!(is_prime(n));
+        }
+    }
+
     #[test]
     fn small_composite() {
         for n in vec![5 * 7, 5 * 7 + 11, 23 * 29, 6, 29 * 31, 41 * 43 * 47] {
